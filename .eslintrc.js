@@ -15,7 +15,9 @@ module.exports = {
     '@typescript-eslint/explicit-module-boundary-types': 'off',
   },
   env: {
-    node: true,
     jest: true,
+  },
+  globals: {
+    module: true,
   },
 };
