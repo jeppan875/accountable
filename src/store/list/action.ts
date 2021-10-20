@@ -1,4 +1,4 @@
-import { ActionCreator, Action, Dispatch } from 'redux';
+import { ActionCreator, Action, Dispatch, AnyAction } from 'redux';
 import { ThunkAction } from 'redux-thunk';
 import { requestMockData } from '../..//mockData';
 
@@ -27,3 +27,8 @@ export const fetchList: AppThunk = () => {
     }
   };
 };
+
+export const searchList = (search: string): AnyAction => ({
+  type: ListActionTypes.SEARCH_LIST,
+  payload: search,
+});

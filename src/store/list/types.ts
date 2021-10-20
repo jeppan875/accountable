@@ -25,16 +25,19 @@ export enum ListActionTypes {
   FETCH_LIST_PENDING = 'list/PENDING',
   FETCH_LIST_SUCCESS = 'list/SUCCESS',
   FETCH_LIST_ERROR = 'list/ERROR',
+  SEARCH_LIST = 'list/SEARCH',
 }
 
 export interface ListState {
   readonly loading: boolean;
   readonly data: NormalizedListData | undefined;
   readonly error?: string;
+  search: string;
 }
 
 export const initialState: ListState = {
   data: undefined,
   error: undefined,
   loading: false,
+  search: '',
 };

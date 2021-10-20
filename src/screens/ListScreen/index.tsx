@@ -3,10 +3,10 @@ import { View, Text } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { fetchList } from '../../store/list/action';
 import { useDispatch, useSelector } from 'react-redux';
-import { topCollectionSelector } from '../../store/list/selector';
+import { collectionSelector } from '../../store/list/selector';
 
 export default () => {
-  const result = useSelector(topCollectionSelector);
+  const result = useSelector(collectionSelector);
   console.log(result, 'resultresult');
   const dispatch = useDispatch();
   useEffect(() => {
