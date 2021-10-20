@@ -9,7 +9,7 @@ export default ({
 }: {
   list: (string | undefined)[];
   padding?: number;
-  isChildList: boolean;
+  isChildList?: boolean;
 }) => {
   return (
     <FlatList
