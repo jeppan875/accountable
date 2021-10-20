@@ -7,24 +7,26 @@ export interface NormalizedListData {
   result: string[];
 }
 
-export interface NormalizedData<T> {
-  [uuid: string]: T;
+export interface NormalizedData<Item> {
+  [uuid: string]: Item;
 }
 
 export interface Item {
-  id?: string;
+  id: string;
   title: string;
   description: string;
   displayName?: string;
   question?: string;
   type?: string;
-  list?: Item[];
+  list?: string[];
+  hasList: boolean;
+  hasQuestion: boolean;
 }
 
 export enum ListActionTypes {
-  FETCH_LIST_PENDING = 'list/PENDING',
-  FETCH_LIST_SUCCESS = 'list/SUCCESS',
-  FETCH_LIST_ERROR = 'list/ERROR',
+  FETCH_LIST_PENDING = 'list/FETCHING_PENDING',
+  FETCH_LIST_SUCCESS = 'list/FETCHING_SUCCESS',
+  FETCH_LIST_ERROR = 'list/FETCHING_ERROR',
   SEARCH_LIST = 'list/SEARCH',
 }
 
