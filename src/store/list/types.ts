@@ -1,4 +1,4 @@
-interface NomralizedListData {
+export interface NormalizedListData {
   entities:
     | {
         items: NormalizedData<Item>;
@@ -29,6 +29,12 @@ export enum ListActionTypes {
 
 export interface ListState {
   readonly loading: boolean;
-  readonly data: NomralizedListData | undefined;
+  readonly data: NormalizedListData | undefined;
   readonly error?: string;
 }
+
+export const initialState: ListState = {
+  data: undefined,
+  error: undefined,
+  loading: false,
+};

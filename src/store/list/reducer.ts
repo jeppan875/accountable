@@ -1,7 +1,7 @@
 import { Reducer } from 'redux';
 import { ListActionTypes, ListState } from './types';
 import { normalize, schema } from 'normalizr';
-import { Item } from './types';
+import { Item, initialState } from './types';
 
 const item = new schema.Entity<Item>(
   'items',
@@ -18,12 +18,6 @@ item.define({
 });
 
 const normalizedScheme = new schema.Array(item);
-
-export const initialState: ListState = {
-  data: undefined,
-  error: undefined,
-  loading: false,
-};
 
 const reducer: Reducer<ListState> = (state = initialState, action) => {
   switch (action.type) {
