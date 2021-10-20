@@ -7,7 +7,7 @@ export interface ApplicationState {
   list: null;
 }
 
-export default function configureStore() {
+const configureStore = () => {
   const middlewares = [thunkMiddleware];
 
   const store = createStore(
@@ -17,4 +17,6 @@ export default function configureStore() {
   );
 
   return store;
-}
+};
+
+export const store = configureStore();
