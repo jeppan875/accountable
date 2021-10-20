@@ -8,8 +8,12 @@ const item = new schema.Entity<Item>(
   {},
   {
     idAttribute: value => (value.id ? value.id : value.title),
-    processStrategy: (value, parentObj) =>
-      value.id ? { ...value, type: 'item' } : { ...value, type: 'collection' },
+    processStrategy: (value, parentObj) => ({
+      ...value,
+      id: value.id ? value.id : value.title,
+      hasList: value?.list?.length > 0,
+      hasQuestion: value?.question?.length > 0,
+    }),
   },
 );
 
@@ -26,7 +30,6 @@ const reducer: Reducer<ListState> = (state = initialState, action) => {
     }
     case ListActionTypes.FETCH_LIST_SUCCESS: {
       const normalizedData = normalize(action.payload, normalizedScheme);
-      console.log(normalizedData);
       return { ...state, loading: false, data: normalizedData };
     }
     case ListActionTypes.FETCH_LIST_ERROR: {
