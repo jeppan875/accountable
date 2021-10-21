@@ -7,9 +7,11 @@ import { INavigator } from '../RootNavigator';
 export default ({
   allow,
   onLeave,
+  leaveActionText,
 }: {
   allow: boolean;
   onLeave: () => void;
+  leaveActionText: string;
 }) => {
   const navigation: INavigator = useNavigation();
 
@@ -29,7 +31,7 @@ export default ({
           'You have unsaved changes. Are you sure to discard them and leave the screen?',
           [
             {
-              text: 'Save changes',
+              text: leaveActionText,
               style: 'default',
               onPress: () => onLeave(),
             },
@@ -43,6 +45,6 @@ export default ({
           ],
         );
       }),
-    [navigation, allow, onLeave],
+    [navigation, allow, onLeave, leaveActionText],
   );
 };
