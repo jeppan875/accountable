@@ -32,3 +32,21 @@ export const searchList = (search: string): AnyAction => ({
   type: ListActionTypes.SEARCH_LIST,
   payload: search,
 });
+
+export const updateItem = (
+  id: string | undefined,
+  title: string,
+  description: string,
+): AnyAction => ({
+  type: ListActionTypes.UPDATE_ITEM,
+  payload: {
+    id,
+    title,
+    description,
+  },
+});
+
+export const removeItem = (id: string): AnyAction => ({
+  type: ListActionTypes.REMOVE_ITEM,
+  payload: id,
+});

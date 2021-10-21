@@ -4,7 +4,7 @@ export interface NormalizedListData {
         items: NormalizedData<Item>;
       }
     | any;
-  result: string[];
+  result?: string[];
 }
 
 export interface NormalizedData<Item> {
@@ -28,6 +28,8 @@ export enum ListActionTypes {
   FETCH_LIST_SUCCESS = 'list/FETCHING_SUCCESS',
   FETCH_LIST_ERROR = 'list/FETCHING_ERROR',
   SEARCH_LIST = 'list/SEARCH',
+  UPDATE_ITEM = 'list/UPDATE_ITEM',
+  REMOVE_ITEM = 'list/REMOVE_ITEM',
 }
 
 export interface ListState {
