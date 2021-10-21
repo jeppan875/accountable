@@ -7,8 +7,9 @@ export const selectList = (state: ApplicationState): ListState =>
 
 export const selectItem = createSelector(
   selectList,
-  (state: ApplicationState, id: string) => id,
-  (list: ListState, id: string) => {
+  (state: ApplicationState, id: string | undefined) => id,
+  (list: ListState, id: string | undefined) => {
+    if (id == null) return null;
     return list.data?.entities.items[id];
   },
 );
