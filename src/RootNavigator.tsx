@@ -1,13 +1,19 @@
 import React from 'react';
 
+import { RouteProp } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import ListScreen from './screens/ListScreen';
 import DetailScreen from './screens/DetailScreen';
+import { StackNavigationProp } from '@react-navigation/stack';
+
+export type INavigator = StackNavigationProp<RootStackParamList>;
 
 export type RootStackParamList = {
   List: undefined;
-  Detail: undefined;
+  Detail: { id: string };
 };
+
+export type RootStackRouteProp = RouteProp<RootStackParamList>;
 
 const MainStack = createStackNavigator<RootStackParamList>();
 
