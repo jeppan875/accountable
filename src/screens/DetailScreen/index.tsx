@@ -10,6 +10,7 @@ import usePreventLeave from '../../hooks/usePreventLeave';
 import InputField from '../../Components/InputField';
 import { colors, gutters } from '../../theme';
 import PrimaryButton from '../../Components/PrimaryButton';
+import { regAlphabetAndSpaces } from '../../Utils/regex';
 
 export default ({
   navigation,
@@ -27,9 +28,14 @@ export default ({
   const [title, setTitle] = useState(item.title);
   const [description, setDescription] = useState(item.description);
 
+  const disableSave =
+    !regAlphabetAndSpaces.test(description) ||
+    !regAlphabetAndSpaces.test(title);
+
   usePreventLeave({
     allow: title === item.title && description === item.description,
-    onLeave: () => null,
+    onLeave: disableSave ? () => null : () => null,
+    leaveActionText: disableSave ? 'Stay' : 'Save changes',
   });
 
   return (
@@ -38,16 +44,23 @@ export default ({
         contentContainerStyle={{
           padding: gutters.screenGutter,
         }}>
-        <InputField labelText="Title" value={title} onChangeText={setTitle} />
+        <InputField
+          invalid={!regAlphabetAndSpaces.test(title)}
+          labelText="Title"
+          value={title}
+          onChangeText={setTitle}
+        />
         <InputField
           labelText="Description"
           value={description}
           containerStyles={{ marginTop: 20 }}
           onChangeText={setDescription}
           multiline
+          invalid={!regAlphabetAndSpaces.test(description)}
         />
         <View style={styles.buttonContainer}>
           <PrimaryButton
+            disabled={disableSave}
             text="SAVE"
             onPress={() => null}
             buttonStyle={{
