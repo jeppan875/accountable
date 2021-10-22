@@ -31,6 +31,7 @@ export enum ListActionTypes {
   SEARCH_LIST = 'list/SEARCH',
   UPDATE_ITEM = 'list/UPDATE_ITEM',
   REMOVE_ITEM = 'list/REMOVE_ITEM',
+  SHUFFLE = 'list/SHUFFLE',
 }
 
 export interface ListState {

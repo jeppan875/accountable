@@ -17,7 +17,7 @@ export const selectItem = createSelector(
 export const selectListResult = createSelector(
   selectList,
   (list: ListState) => {
-    const searchStr = list.search.toLowerCase().trim();
+    const searchStr = list?.search?.toLowerCase()?.trim() || '';
     if (!searchStr) {
       return list?.data?.result || [];
     } else {

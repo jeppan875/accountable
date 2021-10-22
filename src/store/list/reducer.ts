@@ -2,6 +2,7 @@ import { Reducer } from 'redux';
 import { ListActionTypes, ListState } from './types';
 import { normalize, schema } from 'normalizr';
 import { Item, initialState, NormalizedData } from './types';
+import { shuffleArray } from '../../Utils/helpers';
 
 const item = new schema.Entity<Item>(
   'items',
@@ -38,6 +39,40 @@ const reducer: Reducer<ListState> = (state = initialState, action) => {
     }
     case ListActionTypes.SEARCH_LIST: {
       return { ...state, search: action.payload };
+    }
+    case ListActionTypes.SHUFFLE: {
+      const allItems: Item[] = Object.values(state.data?.entities?.items);
+
+      // Shuffle all lists that references items
+      const newItemsObj = allItems.reduce<NormalizedData<Item>>((acc, curr) => {
+        if (curr.hasList && curr.list) {
+          const newList = [...curr.list];
+          shuffleArray(newList);
+          acc[curr.id] = {
+            ...curr,
+            list: newList,
+          };
+          return acc;
+        } else {
+          acc[curr.id] = curr;
+          return acc;
+        }
+      }, {});
+
+      // Shuffle top list
+      const newResult = [...(state.data?.result || [])];
+      shuffleArray(newResult);
+      return {
+        ...state,
+        data: {
+          ...state.data,
+          entities: {
+            ...state.data?.entities,
+            items: newItemsObj,
+          },
+          result: newResult,
+        },
+      };
     }
     case ListActionTypes.UPDATE_ITEM: {
       const { id, title, description } = action.payload;

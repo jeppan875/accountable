@@ -37,6 +37,10 @@ export const searchList = (search: string): AnyAction => ({
   payload: search,
 });
 
+export const shuffleList = () => ({
+  type: ListActionTypes.SHUFFLE,
+});
+
 export const updateItem = (
   id: string | undefined,
   title: string,
