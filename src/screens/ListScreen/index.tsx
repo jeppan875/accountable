@@ -18,7 +18,10 @@ export default () => {
 
   return (
     <SafeAreaView edges={['bottom']}>
-      <Fetching loading={loading} error={error}>
+      <Fetching
+        loading={loading}
+        error={error}
+        retry={() => dispatch(fetchList())}>
         <FlatList
           contentContainerStyle={{
             padding: 20,

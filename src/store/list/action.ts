@@ -4,6 +4,7 @@ import { requestMockData } from '../..//mockData';
 
 import { ApplicationState } from '../index';
 import { ListActionTypes } from './types';
+import { ErrorCodes } from '../../Utils/constants';
 
 export type AppThunk = ActionCreator<
   ThunkAction<void, ApplicationState, null, Action<string>>
@@ -16,13 +17,16 @@ export const fetchList: AppThunk = () => {
         type: ListActionTypes.FETCH_LIST_PENDING,
       });
       const data = await requestMockData();
+      // throw new Error(ErrorCodes.RETRY);
+      // throw new Error(ErrorCodes.FAILURE);
       return dispatch({
         type: ListActionTypes.FETCH_LIST_SUCCESS,
         payload: data,
       });
-    } catch (e) {
+    } catch (e: any) {
       return dispatch({
         type: ListActionTypes.FETCH_LIST_ERROR,
+        payload: e.message,
       });
     }
   };
