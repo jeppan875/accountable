@@ -9,11 +9,12 @@ import CardList from '../../Components/CardList';
 
 export default () => {
   const result = useSelector(selectListResult);
-  console.log(result, 'resultresult');
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(fetchList());
   }, []);
+
   return (
     <SafeAreaView edges={['bottom']}>
       <CardList padding={20} list={result} />

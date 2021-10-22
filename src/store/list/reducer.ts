@@ -13,6 +13,7 @@ const item = new schema.Entity<Item>(
       id: value.id ? value.id : value.title,
       hasList: value?.list?.length > 0,
       hasQuestion: value?.question?.length > 0,
+      parentTitle: parentObj ? parentObj.title : null,
     }),
   },
 );

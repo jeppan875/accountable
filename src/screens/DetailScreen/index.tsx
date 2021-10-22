@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, ScrollView, StyleSheet } from 'react-native';
+import { View, ScrollView, StyleSheet, Text } from 'react-native';
 import { INavigator, RootStackRouteProp } from '../../RootNavigator';
 import { selectItem } from '../../store/list/selector';
 import { ApplicationState } from '../../store';
@@ -7,7 +7,7 @@ import { Item } from '../../store/list/types';
 import { useDispatch, useSelector } from 'react-redux';
 import usePreventLeave from '../../hooks/usePreventLeave';
 import InputField from '../../Components/InputField';
-import { colors, gutters } from '../../theme';
+import { colors, gutters, textStyle } from '../../theme';
 import PrimaryButton from '../../Components/PrimaryButton';
 import { regAlphabetAndSpaces } from '../../Utils/regex';
 import { updateItem, removeItem } from '../../store/list/action';
@@ -57,11 +57,17 @@ export default ({
         contentContainerStyle={{
           padding: gutters.screenGutter,
         }}>
+        {item?.parentTitle && (
+          <Text style={textStyle.title}>
+            {'Part of collection ' + item.parentTitle}
+          </Text>
+        )}
         <InputField
           invalid={!regAlphabetAndSpaces.test(title)}
           labelText="Title"
           value={title}
           onChangeText={setTitle}
+          containerStyles={{ marginTop: 20 }}
         />
         <InputField
           labelText="Description"

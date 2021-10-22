@@ -21,6 +21,7 @@ export interface Item {
   list?: string[];
   hasList: boolean;
   hasQuestion: boolean;
+  parentTitle?: string;
 }
 
 export enum ListActionTypes {

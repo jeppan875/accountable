@@ -1,5 +1,6 @@
-import React, { useEffect } from 'react';
-import { View, FlatList } from 'react-native';
+import React from 'react';
+import { View, FlatList, StyleSheet } from 'react-native';
+import { colors } from '../../theme';
 import Card from '../Card';
 
 export default ({
@@ -13,12 +14,13 @@ export default ({
 }) => {
   return (
     <FlatList
-      style={{
-        marginTop: isChildList ? 20 : 0,
-        borderLeftColor: 'grey',
-        borderLeftWidth: 2,
-        marginLeft: isChildList ? 6 : 0,
-      }}
+      style={[
+        {
+          marginTop: isChildList ? 20 : 0,
+          marginLeft: isChildList ? 6 : 0,
+        },
+        styles.listStyle,
+      ]}
       contentContainerStyle={{
         padding,
       }}
@@ -31,3 +33,10 @@ export default ({
     />
   );
 };
+
+const styles = StyleSheet.create({
+  listStyle: {
+    borderLeftColor: colors.neutral,
+    borderLeftWidth: 2,
+  },
+});
