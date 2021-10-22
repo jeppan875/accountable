@@ -1,13 +1,16 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, FlatList } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { fetchList } from '../../store/list/action';
+import { fetchList, searchList } from '../../store/list/action';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectListResult, selectList } from '../../store/list/selector';
 import Card from '../../Components/Card';
 import Fetching from '../../Components/Fetching';
+import SearchBar from '../../Components/SearchBar';
 
 export default () => {
+  const [search, setSearch] = useState('');
+
   const result = useSelector(selectListResult);
   const { loading, error } = useSelector(selectList);
   const dispatch = useDispatch();
@@ -17,12 +20,19 @@ export default () => {
   }, []);
 
   return (
-    <SafeAreaView edges={['bottom']}>
+    <SafeAreaView style={{ flex: 1 }} edges={['bottom']}>
       <Fetching
         loading={loading}
         error={error}
         retry={() => dispatch(fetchList())}>
         <FlatList
+          ListHeaderComponent={
+            <SearchBar
+              input={search}
+              setInput={setSearch}
+              onSearch={() => dispatch(searchList(search))}
+            />
+          }
           contentContainerStyle={{
             padding: 20,
           }}

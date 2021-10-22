@@ -7,7 +7,7 @@ import {
   TextInputProps,
   ViewStyle,
 } from 'react-native';
-import { colors } from '../../theme';
+import { colors, inputBase } from '../../theme';
 
 interface InputFieldProps extends TextInputProps {
   invalid?: boolean;
@@ -81,9 +81,7 @@ const InputField = ({
         multiline={multiline}
         underlineColorAndroid="rgba(0,0,0,0)"
         style={[
-          styles.inputField,
-          { color: colors.secondary, fontSize: 16 },
-          { backgroundColor: 'white' },
+          inputBase,
           focused && { borderWidth: 2, borderColor: colors.secondary },
           invalid && { borderWidth: 2, borderColor: colors.error },
           extraStyles,
@@ -110,21 +108,5 @@ const InputField = ({
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  inputField: {
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    minHeight: 50,
-    paddingHorizontal: 15,
-    borderRadius: 8,
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
-  },
-});
 
 export default InputField;

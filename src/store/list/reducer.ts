@@ -36,6 +36,9 @@ const reducer: Reducer<ListState> = (state = initialState, action) => {
     case ListActionTypes.FETCH_LIST_ERROR: {
       return { ...state, loading: false, error: action.payload };
     }
+    case ListActionTypes.SEARCH_LIST: {
+      return { ...state, search: action.payload };
+    }
     case ListActionTypes.UPDATE_ITEM: {
       const { id, title, description } = action.payload;
       return {

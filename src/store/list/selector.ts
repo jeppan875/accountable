@@ -17,16 +17,16 @@ export const selectItem = createSelector(
 export const selectListResult = createSelector(
   selectList,
   (list: ListState) => {
-    const searchStr = list.search;
+    const searchStr = list.search.toLowerCase().trim();
     if (!searchStr) {
       return list?.data?.result || [];
     } else {
       const allItems: Item[] = Object.values(list?.data?.entities?.items);
-      const searchResult = allItems.filter(
-        i =>
-          i?.title?.toLowerCase()?.includes(searchStr) ||
-          i?.description?.toLowerCase().includes(searchStr),
-      );
+      const searchResult = allItems.filter(item => {
+        const title = item?.title?.toLowerCase();
+        const description = item?.description.toLowerCase();
+        return title.includes(searchStr) || description.includes(searchStr);
+      });
       return searchResult.map(r => r.id);
     }
   },
