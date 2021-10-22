@@ -1,7 +1,7 @@
 import { Reducer } from 'redux';
 import { ListActionTypes, ListState } from './types';
 import { normalize, schema } from 'normalizr';
-import { Item, initialState } from './types';
+import { Item, initialState, NormalizedData } from './types';
 
 const item = new schema.Entity<Item>(
   'items',
@@ -57,7 +57,36 @@ const reducer: Reducer<ListState> = (state = initialState, action) => {
       };
     }
     case ListActionTypes.REMOVE_ITEM: {
-      return { ...state, loading: false, error: action.payload };
+      const id = action.payload;
+      const allItems: Item[] = Object.values(state.data?.entities?.items);
+      const newItemsObj = allItems.reduce<NormalizedData<Item>>((acc, curr) => {
+        // Dont add the removed item to new object
+        if (curr.id === id) {
+          return acc;
+        }
+        // Check if an item has a reference to the removed item
+        if (curr.hasList) {
+          const newList = curr.list?.filter(itemId => itemId !== id);
+          acc[curr.id] = {
+            ...curr,
+            list: newList,
+          };
+          return acc;
+        } else {
+          acc[curr.id] = curr;
+          return acc;
+        }
+      }, {});
+      return {
+        ...state,
+        data: {
+          ...state.data,
+          entities: {
+            ...state.data?.entities,
+            items: newItemsObj,
+          },
+        },
+      };
     }
     default: {
       return state;

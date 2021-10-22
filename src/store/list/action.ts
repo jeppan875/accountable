@@ -46,7 +46,7 @@ export const updateItem = (
   },
 });
 
-export const removeItem = (id: string): AnyAction => ({
+export const removeItem = (id: string | undefined): AnyAction => ({
   type: ListActionTypes.REMOVE_ITEM,
   payload: id,
 });

@@ -1,17 +1,16 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, ScrollView, StyleSheet } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import { INavigator, RootStackRouteProp } from '../../RootNavigator';
 import { selectItem } from '../../store/list/selector';
 import { ApplicationState } from '../../store';
 import { Item } from '../../store/list/types';
-import { useDispatch, useSelector, useStore } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import usePreventLeave from '../../hooks/usePreventLeave';
 import InputField from '../../Components/InputField';
 import { colors, gutters } from '../../theme';
 import PrimaryButton from '../../Components/PrimaryButton';
 import { regAlphabetAndSpaces } from '../../Utils/regex';
-import { updateItem } from '../../store/list/action';
+import { updateItem, removeItem } from '../../store/list/action';
 
 export default ({
   navigation,
@@ -29,18 +28,28 @@ export default ({
 
   const [title, setTitle] = useState(item?.title || '');
   const [description, setDescription] = useState(item?.description || '');
+  const [saved, setSaved] = useState(false);
 
   const disableSave =
     !regAlphabetAndSpaces.test(description) ||
     !regAlphabetAndSpaces.test(title);
 
   usePreventLeave({
-    allow: title === item.title && description === item.description,
+    allow:
+      (title === item?.title && description === item?.description) ||
+      item == null ||
+      saved,
     onLeave: disableSave
       ? () => null
       : () => dispatch(updateItem(id, title, description)),
     leaveActionText: disableSave ? 'Stay' : 'Save changes',
   });
+
+  useEffect(() => {
+    if (item == null || saved) {
+      navigation.goBack();
+    }
+  }, [item, saved]);
 
   return (
     <View style={{ flex: 1 }}>
@@ -66,7 +75,10 @@ export default ({
           <PrimaryButton
             disabled={disableSave}
             text="SAVE"
-            onPress={() => dispatch(updateItem(id, title, description))}
+            onPress={() => {
+              setSaved(true);
+              dispatch(updateItem(id, title, description));
+            }}
             buttonStyle={{
               flexShrink: 1,
             }}
@@ -74,7 +86,7 @@ export default ({
           <View style={{ width: 10 }} />
           <PrimaryButton
             text="DELETE"
-            onPress={() => null}
+            onPress={() => dispatch(removeItem(id))}
             buttonStyle={{
               backgroundColor: colors.error,
               flexShrink: 1,
