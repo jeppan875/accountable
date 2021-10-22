@@ -60,6 +60,8 @@ const reducer: Reducer<ListState> = (state = initialState, action) => {
     case ListActionTypes.REMOVE_ITEM: {
       const id = action.payload;
       const allItems: Item[] = Object.values(state.data?.entities?.items);
+
+      // Remove the item from items object, remove all references
       const newItemsObj = allItems.reduce<NormalizedData<Item>>((acc, curr) => {
         // Dont add the removed item to new object
         if (curr.id === id) {
@@ -79,6 +81,10 @@ const reducer: Reducer<ListState> = (state = initialState, action) => {
           return acc;
         }
       }, {});
+
+      // Remove refernce from top level result array
+      const newResult = state.data?.result?.filter(itemId => itemId !== id);
+
       return {
         ...state,
         data: {
@@ -87,6 +93,7 @@ const reducer: Reducer<ListState> = (state = initialState, action) => {
             ...state.data?.entities,
             items: newItemsObj,
           },
+          result: newResult,
         },
       };
     }
