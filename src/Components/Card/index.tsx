@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { View, Pressable, Text, StyleSheet } from 'react-native';
+import { View, Pressable, Text, StyleSheet, FlatList } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigation } from '@react-navigation/core';
 import { selectItem } from '../../store/list/selector';
 import { ApplicationState } from '../../store';
 import { Item } from '../../store/list/types';
-import CardList from '../CardList';
 import { INavigator } from '../../RootNavigator';
+import { colors } from '../../theme';
 
 const Card = ({
   id,
@@ -39,7 +39,24 @@ const Card = ({
         <Text>{item.description}</Text>
       </Pressable>
       {item.hasList && showList && (
-        <CardList list={item.list || []} isChildList={true} />
+        <FlatList
+          style={[
+            {
+              marginTop: item.hasList ? 20 : 0,
+              marginLeft: item.hasList ? 6 : 0,
+            },
+            styles.listStyle,
+          ]}
+          contentContainerStyle={{
+            padding: 20,
+          }}
+          ItemSeparatorComponent={() => <View style={{ height: 20 }} />}
+          keyExtractor={(item: string, index) => (item ? item : index + '')}
+          renderItem={({ item: itemId }) =>
+            itemId ? <Card id={itemId} isChildCard={item.hasList} /> : null
+          }
+          data={item.list || []}
+        />
       )}
     </View>
   );
@@ -53,5 +70,9 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     borderRadius: 8,
     backgroundColor: 'white',
+  },
+  listStyle: {
+    borderLeftColor: colors.neutral,
+    borderLeftWidth: 2,
   },
 });
