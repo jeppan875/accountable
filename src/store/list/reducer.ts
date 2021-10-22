@@ -66,10 +66,11 @@ const reducer: Reducer<ListState> = (state = initialState, action) => {
         }
         // Check if an item has a reference to the removed item
         if (curr.hasList) {
-          const newList = curr.list?.filter(itemId => itemId !== id);
+          const newList = curr.list?.filter(itemId => itemId !== id) || [];
           acc[curr.id] = {
             ...curr,
             list: newList,
+            hasList: newList?.length > 0,
           };
           return acc;
         } else {
