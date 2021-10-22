@@ -35,8 +35,8 @@ const Card = ({
             : navigation.navigate('Detail', { id })
         }
         style={({ pressed }) => [styles.root, pressed && { opacity: 0.5 }]}>
-        <Text>{item.title}</Text>
-        <Text>{item.description}</Text>
+        <Text>{item?.title}</Text>
+        <Text>{item?.description}</Text>
       </Pressable>
       {item.hasList && showList && (
         <FlatList

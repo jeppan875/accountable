@@ -31,7 +31,6 @@ const reducer: Reducer<ListState> = (state = initialState, action) => {
     }
     case ListActionTypes.FETCH_LIST_SUCCESS: {
       const normalizedData = normalize(action.payload, normalizedScheme);
-      console.log(normalizedData);
       return { ...state, loading: false, data: normalizedData };
     }
     case ListActionTypes.FETCH_LIST_ERROR: {

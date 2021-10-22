@@ -3,7 +3,7 @@ export const requestMockData = () =>
     try {
       setTimeout(() => {
         resolve(mockData);
-      }, 3000);
+      }, 1500);
     } catch (e) {
       reject(e);
     }
