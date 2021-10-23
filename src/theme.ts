@@ -1,5 +1,6 @@
 export const colors = {
   primary: 'rgb(47, 214, 122)',
+  active: 'rgb(11, 147, 88)',
   secondary: 'rgb(33, 71, 73)',
   neutral: 'rgb(166, 160, 155)',
   error: 'rgb(235, 76, 106)',
@@ -15,6 +16,10 @@ export const textStyle = {
   title: {
     color: colors.text,
     fontSize: 20,
+  },
+  subTitle: {
+    color: colors.text,
+    fontSize: 14,
   },
 };
 
