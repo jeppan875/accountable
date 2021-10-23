@@ -13,17 +13,17 @@ const Card = ({
   id,
   isChildCard = false,
   questionList = false,
-  selectedItem = '',
-  setSelectedItem,
+  selectedAnswer = '',
+  setSelectedAnswer,
 }: {
   id: string;
   isChildCard: boolean;
   questionList: boolean;
-  selectedItem: string;
-  setSelectedItem: (selected: string) => void;
+  selectedAnswer: string;
+  setSelectedAnswer: (selected: string) => void;
 }) => {
   const [showList, setShowList] = useState(false);
-  const [selected, setSelected] = useState('');
+  const [answer, setAnswer] = useState('');
 
   const navigation: INavigator = useNavigation();
 
@@ -32,7 +32,7 @@ const Card = ({
   );
 
   const showSubItems = questionList
-    ? selectedItem === item.id
+    ? selectedAnswer === item.id
     : item.hasList && showList;
 
   return (
@@ -52,10 +52,10 @@ const Card = ({
           <RadioButton
             label={item?.title}
             secondaryLabel={item?.description}
-            selected={selectedItem === item.id}
+            selected={selectedAnswer === item.id}
             onPress={() => {
               setShowList(!showList);
-              setSelectedItem(selectedItem === item.id ? '' : item.id);
+              setSelectedAnswer(selectedAnswer === item.id ? '' : item.id);
             }}
           />
         ) : (
@@ -90,8 +90,8 @@ const Card = ({
                 id={itemId}
                 isChildCard={item.hasList}
                 questionList={item.hasQuestion}
-                selectedItem={selected}
-                setSelectedItem={setSelected}
+                selectedAnswer={answer}
+                setSelectedAnswer={setAnswer}
               />
             ) : null
           }
