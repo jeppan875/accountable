@@ -47,17 +47,7 @@ const InputField = ({
 
   return (
     <View style={containerStyles}>
-      {labelText && (
-        <Text
-          style={{
-            color: colors.secondary,
-            fontSize: 16,
-            fontWeight: '600',
-            marginBottom: 10,
-          }}>
-          {labelText}
-        </Text>
-      )}
+      {labelText && <Text style={styles.labelText}>{labelText}</Text>}
       <TextInput
         autoCapitalize={autoCapitalize}
         autoCompleteType={autoCompleteType}
@@ -108,5 +98,14 @@ const InputField = ({
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  labelText: {
+    color: colors.secondary,
+    fontSize: 16,
+    fontWeight: '600',
+    marginBottom: 10,
+  },
+});
 
 export default InputField;

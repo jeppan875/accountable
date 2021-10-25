@@ -24,56 +24,13 @@ const RadioButton = ({
   return (
     <TouchableOpacity onPress={onPress} style={buttonStyle}>
       <View style={styles.inputRow}>
-        <View
-          style={{
-            height: 30,
-            width: 30,
-            borderColor: 'white',
-            borderWidth: 2,
-            borderRadius: 15,
-            justifyContent: 'center',
-            alignItems: 'center',
-            shadowColor: '#000',
-            shadowOffset: {
-              width: 0,
-              height: 2,
-            },
-            shadowOpacity: 0.25,
-            shadowRadius: 3.84,
-            elevation: 5,
-            backgroundColor: 'white',
-          }}>
-          {selected && (
-            <View
-              style={{
-                height: 28,
-                width: 28,
-                borderRadius: 14,
-                backgroundColor: colors.active,
-              }}
-            />
-          )}
+        <View style={styles.circle}>
+          {selected && <View style={styles.filledCircle} />}
         </View>
-        <Text
-          style={{
-            color: colors.secondary,
-            fontSize: 16,
-            marginLeft: 10,
-            fontWeight: '600',
-          }}>
-          {label}
-        </Text>
+        <Text style={styles.label}>{label}</Text>
       </View>
       {secondaryLabel && (
-        <Text
-          style={{
-            color: colors.text,
-            fontSize: 16,
-            fontWeight: '400',
-            marginLeft: 40,
-          }}>
-          {secondaryLabel}
-        </Text>
+        <Text style={styles.secondaryLabel}>{secondaryLabel}</Text>
       )}
     </TouchableOpacity>
   );
@@ -86,5 +43,41 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     flexShrink: 1,
+  },
+  circle: {
+    height: 30,
+    width: 30,
+    borderColor: 'white',
+    borderWidth: 2,
+    borderRadius: 15,
+    justifyContent: 'center',
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+    backgroundColor: 'white',
+  },
+  filledCircle: {
+    height: 28,
+    width: 28,
+    borderRadius: 14,
+    backgroundColor: colors.active,
+  },
+  label: {
+    color: colors.secondary,
+    fontSize: 16,
+    marginLeft: 10,
+    fontWeight: '600',
+  },
+  secondaryLabel: {
+    color: colors.text,
+    fontSize: 16,
+    fontWeight: '400',
+    marginLeft: 40,
   },
 });

@@ -10,35 +10,6 @@ import {
 } from 'react-native';
 import { colors } from '../../theme';
 
-const styles = StyleSheet.create({
-  button: {
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    flexDirection: 'row',
-    width: '100%',
-    borderRadius: 8,
-    height: 48,
-    backgroundColor: colors.primary,
-  },
-  pill: {
-    flexGrow: 0,
-    height: 'auto',
-    width: 'auto',
-    borderRadius: 25,
-  },
-  text: {
-    fontSize: 16,
-    color: 'white',
-  },
-  textPill: {
-    paddingHorizontal: 40,
-    paddingVertical: 10,
-  },
-  loading: {
-    justifyContent: 'center',
-  },
-});
-
 export default ({
   text,
   buttonStyle,
@@ -85,3 +56,32 @@ export default ({
     </Pressable>
   );
 };
+
+const styles = StyleSheet.create({
+  button: {
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    flexDirection: 'row',
+    width: '100%',
+    borderRadius: 8,
+    height: 48,
+    backgroundColor: colors.primary,
+  },
+  pill: {
+    flexGrow: 0,
+    height: 'auto',
+    width: 'auto',
+    borderRadius: 25,
+  },
+  text: {
+    fontSize: 16,
+    color: 'white',
+  },
+  textPill: {
+    paddingHorizontal: 40,
+    paddingVertical: 10,
+  },
+  loading: {
+    justifyContent: 'center',
+  },
+});
