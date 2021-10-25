@@ -47,6 +47,18 @@ Structure
 
 Redux additional tools:
 For normalizing data https://www.npmjs.com/package/normalizr
+
+for example the data filed in list reducer is normalized to:
+
+````{
+    entities: {
+        items: {
+            [uuid: string]: Item;
+        }
+    }
+    result: string[]
+}```
+
 For asynchronous dispatch https://www.npmjs.com/package/redux-thunk
 For selector memoization https://redux.js.org/usage/deriving-data-selectors#writing-memoized-selectors-with-reselect
 
@@ -63,3 +75,4 @@ General styling theme is defined in theme.ts
 ## Test error
 
 Uncomment on line 21 and 22 n action.ts
+````
