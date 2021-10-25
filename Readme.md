@@ -48,7 +48,7 @@ Structure
 Redux additional tools:
 For normalizing data https://www.npmjs.com/package/normalizr
 
-- for example the data filed in list reducer is normalized to:
+- for example the data fetched in list reducer is normalized to:
 
 ```
 {
