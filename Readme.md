@@ -56,6 +56,10 @@ For navigation react-navigation is used https://reactnavigation.org/
 The navigation tree is defined in RootNavigator.tsx
 import screens from the `screen` folder
 
+## Theme
+
+General styling theme is defined in theme.ts
+
 ## Test error
 
 Uncomment on line 21 and 22 n action.ts
