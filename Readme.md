@@ -25,11 +25,6 @@ react-test-renderer https://reactjs.org/docs/test-renderer.html
 
 - Place all top-level/higher-order navigation files in `screens`
 - Place all lower-level and design components used in screens in `components`
-
-## Naming convention
-
-- Place all top-level/higher-order navigation files in `screens`
-- Place all lower-level and design components used in screens in `components`
 - Utility functions are placed in `Utils`
 
 ## State management
@@ -55,7 +50,7 @@ For normalizing data https://www.npmjs.com/package/normalizr
 For asynchronous dispatch https://www.npmjs.com/package/redux-thunk
 For selector memoization https://redux.js.org/usage/deriving-data-selectors#writing-memoized-selectors-with-reselect
 
-### Navigation
+## Navigation
 
 For navigation react-navigation is used https://reactnavigation.org/
 The navigation tree is defined in RootNavigator.tsx
