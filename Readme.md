@@ -48,7 +48,7 @@ Structure
 Redux additional tools:
 For normalizing data https://www.npmjs.com/package/normalizr
 
-for example the data filed in list reducer is normalized to:
+- for example the data filed in list reducer is normalized to:
 
 ```
 {
@@ -61,8 +61,8 @@ for example the data filed in list reducer is normalized to:
 }
 ```
 
-For asynchronous dispatch https://www.npmjs.com/package/redux-thunk
-For selector memoization https://redux.js.org/usage/deriving-data-selectors#writing-memoized-selectors-with-reselect
+- For asynchronous dispatch https://www.npmjs.com/package/redux-thunk
+- For selector memoization https://redux.js.org/usage/deriving-data-selectors#writing-memoized-selectors-with-reselect
 
 ## Navigation
 
