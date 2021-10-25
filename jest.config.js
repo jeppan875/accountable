@@ -1,6 +1,6 @@
 /** @type {import('ts-jest/dist/types').InitialOptionsTsJest} */
 module.exports = {
-  preset: 'react-native',
+  preset: '@testing-library/react-native',
   testEnvironment: 'node',
   setupFiles: ['<rootDir>/jestSetup.js'],
   transform: {

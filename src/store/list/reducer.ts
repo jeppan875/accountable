@@ -23,7 +23,7 @@ item.define({
   list: [item],
 });
 
-const normalizedScheme = new schema.Array(item);
+export const normalizedScheme = new schema.Array(item);
 
 const reducer: Reducer<ListState> = (state = initialState, action) => {
   switch (action.type) {
@@ -119,7 +119,7 @@ const reducer: Reducer<ListState> = (state = initialState, action) => {
         }
       }, {});
 
-      // Remove refernce from top level result array
+      // Remove reference from top level result array
       const newResult = state.data?.result?.filter(itemId => itemId !== id);
 
       return {
