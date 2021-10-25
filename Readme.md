@@ -50,14 +50,16 @@ For normalizing data https://www.npmjs.com/package/normalizr
 
 for example the data filed in list reducer is normalized to:
 
-````{
+```
+{
     entities: {
         items: {
             [uuid: string]: Item;
         }
     }
     result: string[]
-}````
+}
+```
 
 For asynchronous dispatch https://www.npmjs.com/package/redux-thunk
 For selector memoization https://redux.js.org/usage/deriving-data-selectors#writing-memoized-selectors-with-reselect
