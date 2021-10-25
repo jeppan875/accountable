@@ -14,13 +14,13 @@ const Card = ({
   isChildCard = false,
   questionList = false,
   selectedAnswer = '',
-  setSelectedAnswer,
+  setSelectedAnswer = () => null,
 }: {
   id: string;
   isChildCard: boolean;
-  questionList: boolean;
-  selectedAnswer: string;
-  setSelectedAnswer: (selected: string) => void;
+  questionList?: boolean;
+  selectedAnswer?: string;
+  setSelectedAnswer?: (selected: string) => void;
 }) => {
   const [showList, setShowList] = useState(false);
   const [answer, setAnswer] = useState('');
