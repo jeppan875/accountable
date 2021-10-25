@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import { colors } from '../../theme';
 
-export default ({
+const PrimaryButton = ({
   text,
   buttonStyle,
   textStyle,
@@ -56,6 +56,8 @@ export default ({
     </Pressable>
   );
 };
+
+export default PrimaryButton;
 
 const styles = StyleSheet.create({
   button: {
